@@ -1,4 +1,4 @@
-name: Copiar Tienda Martita
+name: Copiar y publicar Tienda Martita
 
 on:
   push:
@@ -9,12 +9,22 @@ on:
 
 permissions:
   contents: write
+  pages: write
+  id-token: write
+
+concurrency:
+  group: github-pages
+  cancel-in-progress: true
 
 jobs:
-  copiar:
+  copiar-y-publicar:
     runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
     steps:
       - uses: actions/checkout@v4
+
       - name: Descargar sitio completo
         shell: bash
         run: |
@@ -26,14 +36,31 @@ jobs:
           curl -fsSL "$base/app.js" -o app.js
           sed -i '/<script>(function(){function c()/d' index.html
           sed -i "/licores-2\.jpeg/d" styles.css
+          touch .nojekyll
           grep -oE 'images/[A-Za-z0-9._/-]+' products.js | sort -u | while read -r asset; do
             mkdir -p "$(dirname "$asset")"
             curl -fsSL "$base/$asset" -o "$asset"
           done
-      - name: Guardar respaldo
+
+      - name: Guardar respaldo en el repositorio
+        shell: bash
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add index.html styles.css products.js app.js images
-          git commit -m "Copiar sitio completo de Tienda Martita" || exit 0
+          git add index.html styles.css products.js app.js images .nojekyll
+          git commit -m "Actualizar respaldo de Tienda Martita" || true
           git push
+
+      - name: Configurar GitHub Pages
+        uses: actions/configure-pages@v5
+        with:
+          enablement: true
+
+      - name: Preparar archivos para Pages
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: .
+
+      - name: Publicar en GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4

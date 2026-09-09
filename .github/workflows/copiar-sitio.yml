@@ -1,0 +1,39 @@
+name: Copiar Tienda Martita
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - ".github/workflows/copiar-sitio.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  copiar:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Descargar sitio completo
+        shell: bash
+        run: |
+          set -euo pipefail
+          base="https://tienda-martita.andersson-bermejo-es.chatgpt.site"
+          curl -fsSL "$base/" -o index.html
+          curl -fsSL "$base/styles.css" -o styles.css
+          curl -fsSL "$base/products.js" -o products.js
+          curl -fsSL "$base/app.js" -o app.js
+          sed -i '/<script>(function(){function c()/d' index.html
+          sed -i "/licores-2\.jpeg/d" styles.css
+          grep -oE 'images/[A-Za-z0-9._/-]+' products.js | sort -u | while read -r asset; do
+            mkdir -p "$(dirname "$asset")"
+            curl -fsSL "$base/$asset" -o "$asset"
+          done
+      - name: Guardar respaldo
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add index.html styles.css products.js app.js images
+          git commit -m "Copiar sitio completo de Tienda Martita" || exit 0
+          git push

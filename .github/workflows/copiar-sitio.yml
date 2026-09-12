@@ -1,4 +1,5 @@
 name: Copiar y publicar Tienda Martita
+# Sincronización solicitada: catálogo actualizado
 
 on:
   push:

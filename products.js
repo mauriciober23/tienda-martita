@@ -89,7 +89,7 @@ const products = [
       { "size": "1 litro", "price": 15.75 }
     ],
     "note": "Whisky de perfil intenso y ahumado.",
-    "asset": "https://distribuidorariofrio.com/storage/images-productos/producto_5736_69b5d180a83ce.jpg"
+    "asset": "images/new-products/john-morris-black.png"
   },
   {
     "name": "Old Times Red",

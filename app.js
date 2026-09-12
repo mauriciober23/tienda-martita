@@ -9,7 +9,7 @@ function whatsappLink(p){
 const grid=document.getElementById('productGrid');
 function card(p){
  const media=p.asset?`<img class="bottle-image" src="${esc(p.asset)}" alt="${esc(p.name)}" loading="lazy">`:`<div class="product-placeholder">Imagen en preparación</div>`;
- const imageScale=Number(p.imageScale)||1;
+ const imageScale=Number(p.imageScale)||1.08;
  const flavors=Array.isArray(p.flavors)&&p.flavors.length?`<div class="flavor-block"><span>Sabores disponibles</span><div class="flavor-list">${p.flavors.map(f=>`<small>${esc(f)}</small>`).join('')}</div></div>`:'';
  return `<article class="product-card"><div class="individual-image" style="--product-scale:${imageScale}">${media}</div><div class="product-info"><span class="product-category">${esc(categories[p.category]||p.category)}</span><h3>${esc(p.name)}</h3>${p.note?`<p class="product-meta">${esc(p.note)}</p>`:''}${flavors}<div class="price-list">${p.prices.length?p.prices.map(v=>`<div class="price-row"><span>${esc(v.size)}</span><strong>${money(v.price)}</strong></div>`).join(''):'<p class="pending-price">Precio por confirmar</p>'}</div><a class="order-button" href="${whatsappLink(p)}" target="_blank" rel="noopener">Consultar por WhatsApp</a></div></article>`;
 }

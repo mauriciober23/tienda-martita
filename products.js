@@ -622,7 +622,6 @@ const products = [
     "category": "cocteles",
     "prices": [{ "size": "1.5 litros", "price": 3.00 }],
     "note": "Cóctel sabor frutos rojos.",
-    "flavors": ["Berry Cool", "Pistacho Lime", "Pistacho Rose", "Bongo Bongo Zero", "Harta Demencia Zero", "Tamarindo Uva Sour", "Bongo Bongo", "Maracuyá Madness", "Harta Demencia", "Daiquiri Shark"],
     "asset": "https://static.wixstatic.com/media/b4e640_a9a1d0614a4047b993969a38596f13fe~mv2.png/v1/fill/w_980,h_928,al_c,q_90/RECURSO-berriepng.png"
   },
   {
@@ -693,7 +692,6 @@ const products = [
     "category": "cocteles",
     "prices": [{ "size": "1.5 litros", "price": 3.00 }],
     "note": "Cóctel de vodka sabor frutos rojos.",
-    "flavors": ["Berrylicious", "Guaraná", "Maracuvibes", "Mora Azul"],
     "asset": "https://d2o812a6k13pkp.cloudfront.net/Productos/40535252_0120231109180229.jpg"
   },
   {
@@ -708,7 +706,7 @@ const products = [
     "category": "cocteles",
     "prices": [{ "size": "1.5 litros", "price": 3.00 }],
     "note": "Cóctel de vodka sabor maracuyá.",
-    "asset": "https://www.supermercadosantamaria.com/documents/10180/10504/186204975_G.jpg"
+    "asset": "images/new-products/cubata-maracuvibes.jpg"
   },
   {
     "name": "Cubata Mora Azul",

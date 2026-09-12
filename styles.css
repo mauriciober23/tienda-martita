@@ -62,3 +62,11 @@ body,.brand-mark,.brand strong,.hero h1,.section-heading h2,.product-info h3,
 .eyebrow{font-size:13px;letter-spacing:.14em}
 .brand small{font-size:12px;letter-spacing:.1em}
 .hours,.order-button{font-size:14px}
+.product-category{display:inline-flex;align-self:flex-start;margin-bottom:8px;border-radius:999px;background:rgba(213,174,92,.12);color:var(--gold-soft);padding:4px 9px;font-size:12px;font-weight:800;letter-spacing:.03em}
+.flavor-block{margin:12px 0 4px}.flavor-block>span{display:block;color:#d6d0c5;font-size:13px;font-weight:700;margin-bottom:7px}.flavor-list{display:flex;flex-wrap:wrap;gap:6px}.flavor-list small{border:1px solid #34302a;border-radius:999px;padding:4px 8px;color:#bbb5aa;background:#171512;font-size:12px}
+
+/* Marcos uniformes para que todas las botellas tengan la misma presencia visual. */
+.individual-image{height:290px;padding:16px;background:#fff}
+.bottle-image{object-fit:contain;object-position:center}
+@media(max-width:620px){.individual-image{height:235px;padding:14px}}
+@media(max-width:420px){.individual-image{height:300px}}
